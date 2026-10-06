@@ -1,0 +1,8 @@
+Event Sourcing: We can query an app to find current state, but it isn't always sufficient, Have to know the sequence of events(how we got there).
+Event sourcing means that all changes are stored as sequence of events. Not just can we query these events, we can also use the event log to reconstruct past states, and as a foundation to automatically adjust the state to cope with retroactive changes.
+The fundamental idea of Event Sourcing is that of ensuring every change to the state of an application is captured in an event object, and that these event objects are themselves stored in the sequence they were applied for the same lifetime as the application state itself.
+Event is immutable, if anything changes, cannot edit the event, change is noted by creating new.
+Facilities: 
+Complete Rebuild: We can discard the application state completely and rebuild it by re-running the events from the event log on an empty application.
+Temporal Query: We can determine the application state at any point in time. Notionally we do this by starting with a blank state and rerunning the events up to a particular time or event. We can take this further by considering multiple time-lines (analogous to branching in a version control system).
+Event Replay: If we find a past event was incorrect, we can compute the consequences by reversing it and later events and then replaying the new event and later events. (Or indeed by throwing away the application state and replaying all events with the correct event in sequence.) The same technique can handle events received in the wrong sequence - a common problem with systems that communicate with asynchronous messaging.
