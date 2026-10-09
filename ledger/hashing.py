@@ -1,5 +1,9 @@
 import hashlib
 import json
+from datetime import datetime, timezone
+
+def utc_now_iso() -> str:
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
 
 GENESIS_HASH="0"*64 #prev_hash for 1st event
 

@@ -5,5 +5,6 @@ class Event:
     seq: int 
     ts: str
     event_type: str #deposited/transferPosted
+    payload: dict
     prev_hash: str
     event_hash: str
